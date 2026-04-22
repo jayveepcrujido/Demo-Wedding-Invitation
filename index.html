@@ -2015,7 +2015,7 @@
        *    Execute as: Me  |  Who has access: Anyone
        * 4. Copy the Web App URL and replace YOUR_APPS_SCRIPT_URL below.
        */
-      const APPS_SCRIPT_URL = "https://script.google.com/d/1UvCRce-3H551kfzB9WbeefrB0q3QKBxMpeEGhCxxLgmcmuc72R-CVuuB/edit?usp=sharing";
+      const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwfjgx5o_xGVdSqaKQuGKMf_AIo5EUtshqI68wBgC_7KBelBvdCGP2a6VYbYY8rSXcr/exec";
 
       document
         .getElementById("rsvpForm")
@@ -2030,7 +2030,7 @@
           btn.textContent = "Sending...";
           btn.disabled = true;
           try {
-            if (APPS_SCRIPT_URL !== "https://script.google.com/d/1UvCRce-3H551kfzB9WbeefrB0q3QKBxMpeEGhCxxLgmcmuc72R-CVuuB/edit?usp=sharing") {
+            if (APPS_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbwfjgx5o_xGVdSqaKQuGKMf_AIo5EUtshqI68wBgC_7KBelBvdCGP2a6VYbYY8rSXcr/exec") {
               await fetch(APPS_SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
