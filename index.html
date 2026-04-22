@@ -2030,7 +2030,7 @@
           btn.textContent = "Sending...";
           btn.disabled = true;
           try {
-            if (APPS_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbwfjgx5o_xGVdSqaKQuGKMf_AIo5EUtshqI68wBgC_7KBelBvdCGP2a6VYbYY8rSXcr/exec") {
+            if (APPS_SCRIPT_URL && !APPS_SCRIPT_URL.includes("https://script.google.com/macros/library/d/1iDu1Zz_GQ4Z_OB_ADRsiDBTBUVoWy_A70tfHNUuK1ItJtXvX4aqHDoO0/1")) {
               await fetch(APPS_SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
