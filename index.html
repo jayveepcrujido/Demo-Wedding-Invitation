@@ -267,7 +267,7 @@
       }
       .hero-names {
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2.7rem, 7vw, 5.8rem);
+        font-size: clamp(4rem, 9.5vw, 8.6rem);
         font-weight: 300;
         line-height: 0.95;
         color: var(--text-dark);
@@ -281,7 +281,7 @@
       .hero-ampersand {
         display: block;
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2.1rem, 5vw, 4.2rem);
+        font-size: clamp(3.4rem, 7vw, 6.4rem);
         font-weight: 300;
         font-style: italic;
         color: var(--gold);
@@ -2015,7 +2015,7 @@
        *    Execute as: Me  |  Who has access: Anyone
        * 4. Copy the Web App URL and replace YOUR_APPS_SCRIPT_URL below.
        */
-      const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_URL";
+      const APPS_SCRIPT_URL = "https://script.google.com/d/1UvCRce-3H551kfzB9WbeefrB0q3QKBxMpeEGhCxxLgmcmuc72R-CVuuB/edit?usp=sharing";
 
       document
         .getElementById("rsvpForm")
@@ -2030,7 +2030,7 @@
           btn.textContent = "Sending...";
           btn.disabled = true;
           try {
-            if (APPS_SCRIPT_URL !== "YOUR_APPS_SCRIPT_URL") {
+            if (APPS_SCRIPT_URL !== "https://script.google.com/d/1UvCRce-3H551kfzB9WbeefrB0q3QKBxMpeEGhCxxLgmcmuc72R-CVuuB/edit?usp=sharing") {
               await fetch(APPS_SCRIPT_URL, {
                 method: "POST",
                 mode: "no-cors",
