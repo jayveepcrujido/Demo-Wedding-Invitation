@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ibarra – Clara Nuptials</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
       rel="stylesheet"
@@ -220,7 +220,7 @@
       }
       .envelope-front::after {
         right: -3%;
-        clip-path: polygon(100% 0, 0 58%, 100% 100%);
+        clip-path: polygon(100% 0, 58%, 100% 100%);
       }
       .envelope-flap {
         position: absolute;
@@ -259,7 +259,7 @@
           transform 1.2s cubic-bezier(0.16, 0.84, 0.2, 1),
           box-shadow 1.2s ease;
         overflow: hidden;
-        z-index: 3;
+        z-index: 4;
       }
       .envelope-letter::before {
         content: "Cristomo & Maria";
@@ -308,15 +308,13 @@
         place-items: center;
         font-family: "Cormorant Garamond", serif;
         font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-        z-index: 6;
+        z-index: 9;
         transition:
           transform 0.7s ease,
           opacity 0.7s ease;
       }
-      .intro-open-btn.opening .wax-seal,
       .intro-open-btn.opened .wax-seal {
         transform: translateX(-50%) translateY(12px) scale(0.84);
-        opacity: 0;
       }
       .intro-open-btn.opening .envelope-flap,
       .intro-open-btn.opened .envelope-flap {
@@ -329,7 +327,8 @@
         box-shadow: 0 24px 34px rgba(83, 62, 58, 0.18);
       }
       .intro-open-btn.opened .envelope-letter {
-        transform: translateX(-50%) translateY(-58%) scale(1.02);
+        transform: translateX(-50%) translateY(-82%) scale(1.01);
+        box-shadow: 0 24px 34px rgba(83, 62, 58, 0.18);
       }
 
       .site-shell {
@@ -775,6 +774,99 @@
         color: var(--dusty-rose);
       }
 
+      /* ── PHOTO GALLERY ── */
+      #gallery {
+        background: var(--cream);
+      }
+      .photo-carousel {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .photo-carousel-viewport {
+        overflow: hidden;
+        border-radius: 16px;
+      }
+      .photo-carousel-track {
+        display: flex;
+        transition: transform 0.55s ease;
+        will-change: transform;
+      }
+      .photo-gallery-card {
+        position: relative;
+        overflow: hidden;
+        flex: 0 0 100%;
+        border-radius: 16px;
+        border: 1px solid var(--blush-deep);
+        background: var(--cream-dark);
+        box-shadow: 0 10px 24px rgba(58, 42, 40, 0.08);
+        aspect-ratio: 16 / 10;
+      }
+      .photo-gallery-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1);
+        transition: transform 0.55s ease;
+      }
+      .photo-gallery-card:hover img {
+        transform: scale(1.04);
+      }
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(201, 169, 110, 0.7);
+        border-radius: 999px;
+        background: rgba(253, 246, 240, 0.86);
+        color: var(--gold-dark);
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        backdrop-filter: blur(4px);
+        transition:
+          background 0.25s ease,
+          color 0.25s ease,
+          transform 0.25s ease;
+      }
+      .carousel-btn:hover {
+        background: var(--gold);
+        color: var(--white);
+        transform: translateY(-50%) scale(1.05);
+      }
+      .carousel-btn.prev {
+        left: 0.7rem;
+      }
+      .carousel-btn.next {
+        right: 0.7rem;
+      }
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+      .carousel-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        background: var(--blush-deep);
+        cursor: pointer;
+        transition: transform 0.25s ease;
+      }
+      .carousel-dot.active {
+        background: var(--dusty-rose);
+        transform: scale(1.2);
+      }
+
       /* ── SCHEDULE ── */
       .timeline {
         position: relative;
@@ -997,117 +1089,49 @@
       #rsvp {
         background: var(--blush);
       }
-      .rsvp-form {
-        max-width: 520px;
+      .rsvp-email-wrap {
+        max-width: 640px;
         margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 1.2rem;
-      }
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-      }
-      .form-group label {
-        font-size: 0.63rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--text-mid);
-        font-weight: 500;
-      }
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
-        padding: 0.78rem 1rem;
-        border: 1px solid var(--blush-deep);
-        background: rgba(255, 255, 255, 0.7);
-        font-family: "Jost", sans-serif;
-        font-size: 0.87rem;
-        color: var(--text-dark);
-        outline: none;
-        transition: border-color 0.3s;
-        border-radius: 2px;
-      }
-      .form-group input:focus,
-      .form-group select:focus,
-      .form-group textarea:focus {
-        border-color: var(--gold);
-        background: rgba(255, 255, 255, 0.95);
-      }
-      .rsvp-choices {
-        display: flex;
-        gap: 0.8rem;
-        flex-wrap: wrap;
-      }
-      .rsvp-choice {
-        flex: 1;
-        min-width: 130px;
-        padding: 0.72rem;
-        border: 1px solid var(--blush-deep);
-        background: rgba(255, 255, 255, 0.5);
         text-align: center;
-        cursor: pointer;
-        font-size: 0.7rem;
+      }
+      .rsvp-email-note {
+        font-size: 0.84rem;
+        color: var(--text-mid);
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .rsvp-email-link {
+        display: inline-block;
+        padding: 0.95rem 1.6rem;
+        border: 1px solid var(--gold);
+        background: rgba(255, 255, 255, 0.7);
+        color: var(--rose-dark);
+        text-decoration: none;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--text-mid);
-        transition: all 0.3s;
-        user-select: none;
+        font-size: 0.68rem;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease,
+          border-color 0.3s ease;
       }
-      .rsvp-choice.selected,
-      .rsvp-choice:hover {
+      .rsvp-email-link:hover {
         background: var(--gold);
-        color: var(--white);
         border-color: var(--gold);
-      }
-      .submit-btn {
-        padding: 1rem 2rem;
-        background: var(--rose-dark);
         color: var(--white);
-        border: none;
-        font-family: "Jost", sans-serif;
-        font-size: 0.7rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: background 0.3s;
-        margin-top: 0.5rem;
-        width: 100%;
       }
-      .submit-btn:hover {
-        background: var(--gold-dark);
+      .rsvp-contact-links {
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: var(--text-mid);
+        line-height: 1.9;
       }
-      .form-note {
-        font-size: 0.72rem;
-        color: var(--text-light);
-        text-align: center;
-        line-height: 1.6;
+      .rsvp-contact-links a {
+        color: var(--dusty-rose);
+        text-decoration: none;
       }
-      .rsvp-success {
-        display: none;
-        text-align: center;
-        padding: 3rem 1.5rem;
-      }
-      .rsvp-success .success-icon {
-        font-size: 2.8rem;
-        margin-bottom: 1rem;
-      }
-      .rsvp-success h3 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.8rem;
-        font-weight: 300;
-        color: var(--text-dark);
-      }
-      .rsvp-success p {
-        color: var(--text-light);
-        margin-top: 0.5rem;
-        font-size: 0.86rem;
+      .rsvp-contact-links a:hover {
+        color: var(--rose-dark);
       }
 
       /* ── VENUE MAP ── */
@@ -1416,6 +1440,9 @@
         .timeline-item:nth-child(odd) .timeline-content {
           align-items: flex-start;
         }
+        .photo-gallery-card {
+          aspect-ratio: 4 / 3;
+        }
       }
 
       /* ── MOBILE (≤480px) ── */
@@ -1473,9 +1500,6 @@
           grid-template-columns: repeat(2, 1fr);
           gap: 1rem;
         }
-        .form-row {
-          grid-template-columns: 1fr;
-        }
         #map {
           height: 270px;
         }
@@ -1495,6 +1519,17 @@
         }
         .timeline-item:nth-child(odd) .timeline-content {
           align-items: flex-start;
+        }
+        .carousel-btn {
+          width: 38px;
+          height: 38px;
+          font-size: 1.3rem;
+        }
+        .carousel-btn.prev {
+          left: 0.45rem;
+        }
+        .carousel-btn.next {
+          right: 0.45rem;
         }
       }
 
@@ -1548,9 +1583,9 @@
         <a href="#message">Message</a>
         <a href="#schedule">Schedule</a>
         <a href="#party">Entourage</a>
-        <a href="#rsvp">RSVP</a>
         <a href="#venue">Venue</a>
         <a href="#faq">FAQ</a>
+        <a href="#rsvp">RSVP</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -1609,6 +1644,101 @@
             company as we begin this beautiful new chapter together."
           </p>
           <p class="message-signature">— The Ibarra–Clara Family</p>
+        </div>
+      </section>
+
+      <!-- PHOTO GALLERY -->
+      <section id="gallery">
+        <div class="section-inner reveal">
+          <span class="section-label">Captured moments</span>
+          <h2 class="section-title">Our <em>Photo Gallery</em></h2>
+          <div class="ornament-divider">
+            <div class="ornament-divider-line"></div>
+            <span>✦</span>
+            <div class="ornament-divider-line"></div>
+          </div>
+          <div
+            class="photo-carousel"
+            id="photoCarousel"
+            aria-label="Wedding photo gallery carousel"
+          >
+            <button
+              class="carousel-btn prev"
+              type="button"
+              aria-label="Previous photo"
+            >
+              ‹
+            </button>
+            <div class="photo-carousel-viewport">
+              <div class="photo-carousel-track">
+                <figure class="photo-gallery-card">
+                  <img
+                    src="images/gallery/groom-kissing-his-wife-outdoors.jpg"
+                    alt="The couple sharing a sweet kiss outdoors"
+                    loading="lazy"
+                  />
+                </figure>
+                <figure class="photo-gallery-card">
+                  <img
+                    src="images/gallery/lovely-couple-is-sitting-lean-each-other-beautiful-beach.jpg"
+                    alt="The couple sitting together by the beach"
+                    loading="lazy"
+                  />
+                </figure>
+                <figure class="photo-gallery-card">
+                  <img
+                    src="images/gallery/man-woman-lake-spend-time-each-other-s-arms.jpg"
+                    alt="The couple embracing by the lake"
+                    loading="lazy"
+                  />
+                </figure>
+                <figure class="photo-gallery-card">
+                  <img
+                    src="images/gallery/side-view-romantic-couple-embraced-by-ocean.jpg"
+                    alt="Side view of the couple embracing by the ocean"
+                    loading="lazy"
+                  />
+                </figure>
+              </div>
+            </div>
+            <button
+              class="carousel-btn next"
+              type="button"
+              aria-label="Next photo"
+            >
+              ›
+            </button>
+          </div>
+          <div
+            class="carousel-dots"
+            id="galleryDots"
+            aria-label="Choose gallery photo"
+          >
+            <button
+              class="carousel-dot active"
+              type="button"
+              aria-label="Show photo 1"
+              data-slide="0"
+            ></button>
+            <button
+              class="carousel-dot"
+              type="button"
+              aria-label="Show photo 2"
+              data-slide="1"
+            ></button>
+            <button
+              class="carousel-dot"
+              type="button"
+              aria-label="Show photo 3"
+              data-slide="2"
+            ></button>
+            <button
+              class="carousel-dot"
+              type="button"
+              aria-label="Show photo 4"
+              data-slide="3"
+            ></button>
+          </div>
         </div>
       </section>
 
@@ -1809,117 +1939,6 @@
         </div>
       </section>
 
-      <!-- RSVP -->
-      <section id="rsvp">
-        <div class="section-inner reveal">
-          <span class="section-label">We hope to see you there</span>
-          <h2 class="section-title">Kindly <em>RSVP</em></h2>
-          <div class="ornament-divider">
-            <div class="ornament-divider-line"></div>
-            <span>✦</span>
-            <div class="ornament-divider-line"></div>
-          </div>
-          <p class="form-note" style="margin-bottom: 2rem">
-            Please respond by <strong>September 30, 2026</strong>. We'd love to
-            have you with us.
-          </p>
-
-          <div id="rsvp-success" class="rsvp-success">
-            <div class="success-icon">🌸</div>
-            <h3>We'll see you there!</h3>
-            <p>
-              Thank you so much. Your RSVP has been received and we can't wait
-              to celebrate with you.
-            </p>
-          </div>
-
-          <form class="rsvp-form" id="rsvpForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label>First Name</label>
-                <input
-                  type="text"
-                  name="firstName"
-                  placeholder="Juan"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>Last Name</label>
-                <input
-                  type="text"
-                  name="lastName"
-                  placeholder="Dela Cruz"
-                  required
-                />
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="you@email.com"
-                required
-              />
-            </div>
-            <div class="form-group">
-              <label>Will you attend?</label>
-              <div class="rsvp-choices">
-                <div
-                  class="rsvp-choice"
-                  data-val="yes"
-                  onclick="selectAttend(this)"
-                >
-                  Joyfully Accepts
-                </div>
-                <div
-                  class="rsvp-choice"
-                  data-val="no"
-                  onclick="selectAttend(this)"
-                >
-                  Regretfully Declines
-                </div>
-              </div>
-              <input type="hidden" name="attendance" id="attendanceVal" />
-            </div>
-            <div class="form-group">
-              <label>Meal Preference</label>
-              <select name="meal">
-                <option value="">Select a meal</option>
-                <option>Lechon de Leche</option>
-                <option>Grilled Salmon</option>
-                <option>Chicken Inasal</option>
-                <option>Vegetarian (Kare-Kare)</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Number of Guests (including yourself)</label>
-              <select name="guests">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4+</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Message to the couple (optional)</label>
-              <textarea
-                name="message"
-                rows="3"
-                placeholder="Share your well wishes..."
-              ></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send My RSVP</button>
-            <p class="form-note">
-              ⚙️ <strong>Dev note:</strong> Replace
-              <code>YOUR_APPS_SCRIPT_URL</code> in the JS with your deployed
-              Google Apps Script URL to enable Sheets logging + email alerts.
-            </p>
-          </form>
-        </div>
-      </section>
-
       <!-- VENUE MAP -->
       <section id="venue">
         <div class="section-inner reveal">
@@ -2053,6 +2072,36 @@
                 share the full gallery after.
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RSVP -->
+      <section id="rsvp">
+        <div class="section-inner reveal">
+          <span class="section-label">We hope to see you there</span>
+          <h2 class="section-title">Kindly <em>RSVP</em></h2>
+          <div class="ornament-divider">
+            <div class="ornament-divider-line"></div>
+            <span>✦</span>
+            <div class="ornament-divider-line"></div>
+          </div>
+          <div class="rsvp-email-wrap">
+            <p class="rsvp-email-note">
+              Please send your RSVP by <strong>September 30, 2026</strong>. Let
+              us know your full name and whether you'll be attending.
+            </p>
+            <a
+              class="rsvp-email-link"
+              href="mailto:rsvp@ibarra-clara.ph?subject=Wedding%20RSVP%20-%20Ibarra%20%26%20Clara"
+              >Send an Email to RSVP</a
+            >
+            <p class="rsvp-contact-links">
+              Contact number:
+              <a href="tel:+639171234567">+63 917 123 4567</a><br />
+              Email:
+              <a href="mailto:rsvp@ibarra-clara.ph">rsvp@ibarra-clara.ph</a>
+            </p>
           </div>
         </div>
       </section>
@@ -2267,6 +2316,125 @@
       updateCountdown();
       setInterval(updateCountdown, 1000);
 
+      /* ── Gallery carousel ── */
+      const photoCarousel = document.getElementById("photoCarousel");
+      if (photoCarousel) {
+        const track = photoCarousel.querySelector(".photo-carousel-track");
+        const realSlides = Array.from(
+          photoCarousel.querySelectorAll(".photo-gallery-card"),
+        );
+        const prevBtn = photoCarousel.querySelector(".carousel-btn.prev");
+        const nextBtn = photoCarousel.querySelector(".carousel-btn.next");
+        const dotWrap = document.getElementById("galleryDots");
+        const dots = dotWrap
+          ? Array.from(dotWrap.querySelectorAll(".carousel-dot"))
+          : [];
+        if (realSlides.length > 1) {
+          const firstClone = realSlides[0].cloneNode(true);
+          const lastClone = realSlides[realSlides.length - 1].cloneNode(true);
+          track.appendChild(firstClone);
+          track.insertBefore(lastClone, track.firstChild);
+        }
+
+        const totalReal = realSlides.length;
+        let current = totalReal > 1 ? 1 : 0;
+        let autoPlayId = null;
+        let isTransitioning = false;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function toRealIndex(index) {
+          if (!totalReal) return 0;
+          if (index === 0) return totalReal - 1;
+          if (index === totalReal + 1) return 0;
+          return index - 1;
+        }
+
+        function updateDots() {
+          const active = toRealIndex(current);
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === active);
+            dot.setAttribute("aria-current", i === active ? "true" : "false");
+          });
+        }
+
+        function setTrackPosition(withTransition) {
+          track.style.transition = withTransition
+            ? "transform 0.55s ease"
+            : "none";
+          track.style.transform = `translateX(-${current * 100}%)`;
+        }
+
+        function goToSlide(index, restartAuto = true) {
+          if (!totalReal || isTransitioning) return;
+          current = index;
+          isTransitioning = totalReal > 1;
+          setTrackPosition(totalReal > 1);
+          updateDots();
+          if (restartAuto) startAutoPlay();
+        }
+
+        function startAutoPlay() {
+          stopAutoPlay();
+          if (totalReal <= 1) return;
+          autoPlayId = window.setInterval(
+            () => goToSlide(current + 1, false),
+            2200,
+          );
+        }
+
+        function stopAutoPlay() {
+          if (autoPlayId) {
+            window.clearInterval(autoPlayId);
+            autoPlayId = null;
+          }
+        }
+
+        track.addEventListener("transitionend", () => {
+          if (totalReal <= 1) return;
+          if (current === 0) {
+            current = totalReal;
+            setTrackPosition(false);
+          } else if (current === totalReal + 1) {
+            current = 1;
+            setTrackPosition(false);
+          }
+          isTransitioning = false;
+          updateDots();
+        });
+
+        prevBtn.addEventListener("click", () => {
+          goToSlide(current - 1);
+        });
+
+        nextBtn.addEventListener("click", () => {
+          goToSlide(current + 1);
+        });
+
+        dots.forEach((dot, i) => {
+          dot.addEventListener("click", () => {
+            goToSlide(totalReal > 1 ? i + 1 : i);
+          });
+        });
+
+        photoCarousel.addEventListener("mouseenter", stopAutoPlay);
+        photoCarousel.addEventListener("mouseleave", startAutoPlay);
+
+        photoCarousel.addEventListener("touchstart", (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        });
+        photoCarousel.addEventListener("touchend", (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          const swipeDistance = touchEndX - touchStartX;
+          if (Math.abs(swipeDistance) < 45) return;
+          goToSlide(swipeDistance > 0 ? current - 1 : current + 1);
+        });
+
+        setTrackPosition(false);
+        updateDots();
+        startAutoPlay();
+      }
+
       /* ── Scroll reveal ── */
       const observer = new IntersectionObserver(
         (entries) =>
@@ -2278,15 +2446,6 @@
       document
         .querySelectorAll(".reveal")
         .forEach((el) => observer.observe(el));
-
-      /* ── Attendance toggle ── */
-      function selectAttend(el) {
-        document
-          .querySelectorAll(".rsvp-choice")
-          .forEach((c) => c.classList.remove("selected"));
-        el.classList.add("selected");
-        document.getElementById("attendanceVal").value = el.dataset.val;
-      }
 
       /* ── FAQ ── */
       function toggleFaq(el) {
@@ -2367,68 +2526,6 @@
         .bindPopup(
           `<div class="map-popup-title">Seda Vertis North</div><div>North Ave, Quezon City</div><div style="margin-top:.3rem;font-size:.74rem;color:#a07570">Recommended accommodation · ~10 min drive</div>`,
         );
-
-      /* ── RSVP → Google Apps Script ──
-       *
-       * HOW TO SET UP:
-       * 1. Go to https://script.google.com — create a new project.
-       * 2. Paste this function:
-       *
-       *    function doPost(e) {
-       *      const sheet = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID').getActiveSheet();
-       *      const data  = JSON.parse(e.postData.contents);
-       *      sheet.appendRow([new Date(), data.firstName, data.lastName, data.email,
-       *                        data.attendance, data.meal, data.guests, data.message]);
-       *      MailApp.sendEmail('YOUR_EMAIL@gmail.com',
-       *        'New RSVP – ' + data.firstName + ' ' + data.lastName,
-       *        'Attendance: ' + data.attendance + '\nMeal: ' + data.meal +
-       *        '\nGuests: '   + data.guests    + '\nMessage: ' + data.message);
-       *      return ContentService.createTextOutput('OK');
-       *    }
-       *
-       * 3. Deploy > New deployment > Web App
-       *    Execute as: Me  |  Who has access: Anyone
-       * 4. Copy the Web App URL and replace YOUR_APPS_SCRIPT_URL below.
-       */
-      const APPS_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbwfjgx5o_xGVdSqaKQuGKMf_AIo5EUtshqI68wBgC_7KBelBvdCGP2a6VYbYY8rSXcr/exec";
-
-      document
-        .getElementById("rsvpForm")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
-          const payload = Object.fromEntries(new FormData(this).entries());
-          if (!payload.attendance) {
-            alert("Please let us know if you'll be attending.");
-            return;
-          }
-          const btn = this.querySelector(".submit-btn");
-          btn.textContent = "Sending...";
-          btn.disabled = true;
-          try {
-            if (
-              APPS_SCRIPT_URL &&
-              !APPS_SCRIPT_URL.includes(
-                "https://script.google.com/macros/library/d/1iDu1Zz_GQ4Z_OB_ADRsiDBTBUVoWy_A70tfHNUuK1ItJtXvX4aqHDoO0/1",
-              )
-            ) {
-              await fetch(APPS_SCRIPT_URL, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
-              });
-            }
-            document.getElementById("rsvpForm").style.display = "none";
-            document.getElementById("rsvp-success").style.display = "block";
-          } catch {
-            btn.textContent = "Send My RSVP";
-            btn.disabled = false;
-            alert(
-              "Something went wrong. Please try again or contact us directly.",
-            );
-          }
-        });
     </script>
   </body>
 </html>
